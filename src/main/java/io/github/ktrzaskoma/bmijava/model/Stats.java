@@ -18,6 +18,7 @@ public class Stats {
     private String weight;
     private String height;
     private String bmi;
+    private String info;
     private LocalDate dateOfMeasurement;
 
     @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)

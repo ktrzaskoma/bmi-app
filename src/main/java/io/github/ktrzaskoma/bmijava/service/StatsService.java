@@ -37,20 +37,44 @@ public class StatsService {
         statsEntity.setHeight(statsToSave.height());
         statsEntity.setWeight(statsToSave.weight());
         statsEntity.setUser(user);
-        statsEntity.setBmi(calculateBMI(statsToSave));
+        statsEntity.setBmi(String.valueOf(calculateBMI(statsToSave)));
+        statsEntity.setInfo(infoAnalyzer(statsToSave));
 
         return statsRepository.save(statsEntity);
     }
 
-    // logic to calculate BMI
-    public String calculateBMI(StatsWriteModel stats) {
+    // logic to calculate BMI and receive feedback
+    // part 1
+    public Double calculateBMI(StatsWriteModel stats) {
 
 
         float weightF = Float.parseFloat(stats.weight());
         float heightF = Float.parseFloat(stats.height());
-        float bmiF = Math.round(weightF/ (heightF * heightF));
 
-        return String.valueOf(bmiF);
+        return Math.round((weightF/ (heightF * heightF)) * 100.0) / 100.0;
+    }
+
+    // part 2
+    public String infoAnalyzer(StatsWriteModel stats) {
+        double bmiF = calculateBMI(stats);
+
+        if (bmiF < 16.0) {
+            return "starvation";
+        } else if (bmiF < 17.0) {
+            return "underweight";
+        } else if (bmiF < 18.5) {
+            return "low weight";
+        } else if (bmiF < 25.0) {
+            return "normal";
+        } else if (bmiF < 30.0) {
+            return "overweight";
+        } else if (bmiF < 35.0) {
+            return "obesity class I";
+        } else if (bmiF < 40.0) {
+            return "obesity class II";
+        } else {
+            return "obesity class III";
+        }
     }
 
 

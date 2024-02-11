@@ -18,6 +18,7 @@ public class StatsMapper implements Function<Stats, StatsDto> {
         return new StatsDto(
                 stats.getId(),
                 stats.getBmi(),
+                stats.getInfo(),
                 userMapper.apply(stats.getUser())
         );
     }
