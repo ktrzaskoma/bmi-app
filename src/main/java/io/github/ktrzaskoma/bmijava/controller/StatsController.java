@@ -1,7 +1,7 @@
 package io.github.ktrzaskoma.bmijava.controller;
 
 import io.github.ktrzaskoma.bmijava.dto.StatsDto;
-import io.github.ktrzaskoma.bmijava.dto.StatsWriteModel;
+import io.github.ktrzaskoma.bmijava.dto.writemodel.StatsWriteModel;
 import io.github.ktrzaskoma.bmijava.model.Stats;
 import io.github.ktrzaskoma.bmijava.service.StatsService;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-
 @RequestMapping("/stats")
 @RequiredArgsConstructor
 public class StatsController {
@@ -33,7 +32,6 @@ public class StatsController {
     @GetMapping("/{statsId}")
     ResponseEntity<StatsDto> getSelectedStat(@PathVariable Long statsId) {
         return ResponseEntity.ok(statsService.getSelectedStat(statsId));
-
     }
 
     @DeleteMapping("/{statsId}")
