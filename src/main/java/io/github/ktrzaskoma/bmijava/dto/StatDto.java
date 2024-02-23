@@ -1,9 +1,9 @@
 package io.github.ktrzaskoma.bmijava.dto;
 
-public record StatsDto(
+public record StatDto(
         Long id,
         String bmi,
-        String info,
+        String infoCode,
         UserDto user) {
 
 }

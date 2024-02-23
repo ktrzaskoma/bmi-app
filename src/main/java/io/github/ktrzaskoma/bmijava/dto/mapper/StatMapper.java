@@ -1,6 +1,6 @@
 package io.github.ktrzaskoma.bmijava.dto.mapper;
 
-import io.github.ktrzaskoma.bmijava.dto.StatsDto;
+import io.github.ktrzaskoma.bmijava.dto.StatDto;
 import io.github.ktrzaskoma.bmijava.model.Stats;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,16 +9,16 @@ import java.util.function.Function;
 
 @Service
 @RequiredArgsConstructor
-public class StatsMapper implements Function<Stats, StatsDto> {
+public class StatMapper implements Function<Stats, StatDto> {
 
     private final UserMapper userMapper;
 
     @Override
-    public StatsDto apply(Stats stats) {
-        return new StatsDto(
+    public StatDto apply(Stats stats) {
+        return new StatDto(
                 stats.getId(),
                 stats.getBmi(),
-                stats.getInfo(),
+                stats.getInfoCode(),
                 userMapper.apply(stats.getUser())
         );
     }
