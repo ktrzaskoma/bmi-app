@@ -1,13 +1,8 @@
-package io.github.ktrzaskoma.bmijava.service.implementation;
+package io.github.ktrzaskoma.bmijava.stat;
 
 import ch.qos.logback.classic.selector.servlet.LoggerContextFilter;
-import io.github.ktrzaskoma.bmijava.dto.writemodel.StatWriteModel;
-import io.github.ktrzaskoma.bmijava.model.Stats;
-import io.github.ktrzaskoma.bmijava.model.User;
-import io.github.ktrzaskoma.bmijava.repo.StatRepository;
-import io.github.ktrzaskoma.bmijava.repo.UserRepository;
-import io.github.ktrzaskoma.bmijava.service.StatCreateService;
-import io.github.ktrzaskoma.bmijava.service.StatService;
+import io.github.ktrzaskoma.bmijava.user.User;
+import io.github.ktrzaskoma.bmijava.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,18 +15,17 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class StatCreateServiceImpl implements StatCreateService {
+public class StatCreateService {
 
     Logger log = LoggerFactory.getLogger(LoggerContextFilter.class);
 
     private final StatRepository statRepository;
     private final UserRepository userRepository;
 
-    @Override
-    public Stats createStatistic(Long userId, StatWriteModel statsToSave) {
+    public Stat createStatistic(Long userId, StatWriteModel statsToSave) {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
 
-        var statsEntity = new Stats();
+        var statsEntity = new Stat();
 
         statsEntity.setHeight(statsToSave.height());
         statsEntity.setWeight(statsToSave.weight());
@@ -43,7 +37,6 @@ public class StatCreateServiceImpl implements StatCreateService {
 
         return statRepository.save(statsEntity);
     }
-
 
     public Double calculateBMI(StatWriteModel stats) {
         float weightF = Float.parseFloat(stats.weight());

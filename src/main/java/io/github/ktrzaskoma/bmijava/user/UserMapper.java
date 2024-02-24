@@ -1,7 +1,7 @@
-package io.github.ktrzaskoma.bmijava.dto.mapper;
+package io.github.ktrzaskoma.bmijava.user;
 
-import io.github.ktrzaskoma.bmijava.dto.UserDto;
-import io.github.ktrzaskoma.bmijava.model.User;
+import io.github.ktrzaskoma.bmijava.user.UserDto;
+import io.github.ktrzaskoma.bmijava.user.User;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;

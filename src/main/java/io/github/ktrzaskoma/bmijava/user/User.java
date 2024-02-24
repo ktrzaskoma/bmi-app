@@ -1,4 +1,4 @@
-package io.github.ktrzaskoma.bmijava.model;
+package io.github.ktrzaskoma.bmijava.user;
 
 
 import jakarta.persistence.Entity;

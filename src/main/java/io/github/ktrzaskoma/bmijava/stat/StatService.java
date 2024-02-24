@@ -1,10 +1,6 @@
-package io.github.ktrzaskoma.bmijava.service.implementation;
+package io.github.ktrzaskoma.bmijava.stat;
 
 import ch.qos.logback.classic.selector.servlet.LoggerContextFilter;
-import io.github.ktrzaskoma.bmijava.dto.StatDto;
-import io.github.ktrzaskoma.bmijava.dto.mapper.StatMapper;
-import io.github.ktrzaskoma.bmijava.repo.StatRepository;
-import io.github.ktrzaskoma.bmijava.service.StatService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,22 +13,19 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class StatServiceImpl implements StatService {
+public class StatService {
 
     Logger log = LoggerFactory.getLogger(LoggerContextFilter.class);
 
     private final StatRepository statRepository;
     private final StatMapper statMapper;
 
-
-    @Override
     public StatDto getSelectedStat(Long statsId) {
         return statRepository.findById(statsId)
                 .map(statMapper).orElseThrow(() -> new RuntimeException("Stats not found"));
 
     }
 
-    @Override
     public List<StatDto> getAllStats() {
         log.info("Get all stats!");
         return statRepository.findAll()
@@ -41,7 +34,6 @@ public class StatServiceImpl implements StatService {
                 .collect(Collectors.toList());
     }
 
-    @Override
     public ResponseEntity deleteSelectedStat(Long statsId) {
         if (statRepository.existsById(statsId)) {
             statRepository.deleteById(statsId);

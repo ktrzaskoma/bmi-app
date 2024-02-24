@@ -1,6 +1,5 @@
-package io.github.ktrzaskoma.bmijava.repo;
+package io.github.ktrzaskoma.bmijava.user;
 
-import io.github.ktrzaskoma.bmijava.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

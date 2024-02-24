@@ -1,4 +1,4 @@
-package io.github.ktrzaskoma.bmijava.dto;
+package io.github.ktrzaskoma.bmijava.user;
 
 public record UserDto(
         Long id,

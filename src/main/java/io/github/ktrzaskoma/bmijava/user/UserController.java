@@ -1,9 +1,9 @@
-package io.github.ktrzaskoma.bmijava.controller;
+package io.github.ktrzaskoma.bmijava.user;
 
-import io.github.ktrzaskoma.bmijava.dto.UserDto;
-import io.github.ktrzaskoma.bmijava.dto.writemodel.UserWriteModel;
-import io.github.ktrzaskoma.bmijava.model.User;
-import io.github.ktrzaskoma.bmijava.service.UserService;
+import io.github.ktrzaskoma.bmijava.user.UserDto;
+import io.github.ktrzaskoma.bmijava.user.UserWriteModel;
+import io.github.ktrzaskoma.bmijava.user.User;
+import io.github.ktrzaskoma.bmijava.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

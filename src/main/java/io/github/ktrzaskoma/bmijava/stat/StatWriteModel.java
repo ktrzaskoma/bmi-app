@@ -1,4 +1,4 @@
-package io.github.ktrzaskoma.bmijava.dto.writemodel;
+package io.github.ktrzaskoma.bmijava.stat;
 
 public record StatWriteModel(
         String weight,

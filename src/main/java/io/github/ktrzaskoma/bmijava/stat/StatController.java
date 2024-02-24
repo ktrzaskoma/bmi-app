@@ -1,10 +1,10 @@
-package io.github.ktrzaskoma.bmijava.controller;
+package io.github.ktrzaskoma.bmijava.stat;
 
-import io.github.ktrzaskoma.bmijava.dto.StatDto;
-import io.github.ktrzaskoma.bmijava.dto.writemodel.StatWriteModel;
-import io.github.ktrzaskoma.bmijava.model.Stats;
-import io.github.ktrzaskoma.bmijava.service.StatCreateService;
-import io.github.ktrzaskoma.bmijava.service.StatService;
+import io.github.ktrzaskoma.bmijava.stat.StatDto;
+import io.github.ktrzaskoma.bmijava.stat.StatWriteModel;
+import io.github.ktrzaskoma.bmijava.stat.Stat;
+import io.github.ktrzaskoma.bmijava.stat.StatCreateService;
+import io.github.ktrzaskoma.bmijava.stat.StatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,11 +17,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StatController {
 
-    private final StatService statService;
-    private final StatCreateService statCreateService;
+   private final StatService statService;
+   private final StatCreateService statCreateService;
 
     @PostMapping("/{userId}")
-    ResponseEntity<Stats> createStatistic(@PathVariable Long userId, @RequestBody StatWriteModel toCreate) {
+    ResponseEntity<Stat> createStatistic(@PathVariable Long userId, @RequestBody StatWriteModel toCreate) {
         return ResponseEntity.ok()
                 .body(statCreateService.createStatistic(userId, toCreate));
     }

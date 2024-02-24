@@ -1,4 +1,6 @@
-package io.github.ktrzaskoma.bmijava.dto;
+package io.github.ktrzaskoma.bmijava.stat;
+
+import io.github.ktrzaskoma.bmijava.user.UserDto;
 
 public record StatDto(
         Long id,

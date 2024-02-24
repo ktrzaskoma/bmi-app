@@ -1,5 +1,6 @@
-package io.github.ktrzaskoma.bmijava.model;
+package io.github.ktrzaskoma.bmijava.stat;
 
+import io.github.ktrzaskoma.bmijava.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity(name = "statistics")
-public class Stats {
+public class Stat {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -25,7 +26,7 @@ public class Stats {
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
 
-    public Stats(User user, String weight, String height) {
+    public Stat(User user, String weight, String height) {
         this.user = user;
         this.weight = weight;
         this.height = height;
