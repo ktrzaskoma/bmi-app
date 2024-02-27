@@ -17,26 +17,49 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class StatCreateService {
 
-    Logger log = LoggerFactory.getLogger(LoggerContextFilter.class);
+    private static final Logger log = LoggerFactory.getLogger(StatCreateService.class);
 
     private final StatRepository statRepository;
     private final UserRepository userRepository;
 
+    public Stat editStatistic(Long userId, Long statId, StatWriteModel statsToUpdate) {
+        User user = findUserById(userId);
+
+        var stat = statRepository.getById(statId);
+
+        stat.setWeight(statsToUpdate.weight());
+        stat.setHeight(statsToUpdate.height());
+        prepareOutput(stat, statsToUpdate, user);
+
+        return statRepository.save(stat);
+    }
+
+
     public Stat createStatistic(Long userId, StatWriteModel statsToSave) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = findUserById(userId);
 
         var statsEntity = new Stat();
 
         statsEntity.setHeight(statsToSave.height());
         statsEntity.setWeight(statsToSave.weight());
-        statsEntity.setBmi(String.valueOf(calculateBMI(statsToSave)));
-        statsEntity.setInfoCode(lineUpBMI(statsToSave, user));
+        prepareOutput(statsEntity, statsToSave, user);
         statsEntity.setUser(user);
-
         log.info("Stat was created");
 
         return statRepository.save(statsEntity);
     }
+
+    private User findUserById(Long userId) {
+        return userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+
+    public void prepareOutput(Stat statsEntity, StatWriteModel statsToSave, User user) {
+        statsEntity.setBmi(String.valueOf(calculateBMI(statsToSave)));
+        statsEntity.setInfoCode(lineUpBMI(statsToSave, user));
+    }
+
+
 
     public Double calculateBMI(StatWriteModel stats) {
         float weightF = Float.parseFloat(stats.weight());

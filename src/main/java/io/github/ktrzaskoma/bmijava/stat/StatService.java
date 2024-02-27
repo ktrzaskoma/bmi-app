@@ -45,6 +45,4 @@ public class StatService {
             return ResponseEntity.notFound().build();
         }
     }
-
-
 }

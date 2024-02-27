@@ -1,7 +1,5 @@
 package io.github.ktrzaskoma.bmijava.user;
 
-import io.github.ktrzaskoma.bmijava.user.UserDto;
-import io.github.ktrzaskoma.bmijava.user.User;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;

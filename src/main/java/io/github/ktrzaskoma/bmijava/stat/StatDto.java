@@ -7,5 +7,4 @@ public record StatDto(
         String bmi,
         String infoCode,
         UserDto user) {
-
 }

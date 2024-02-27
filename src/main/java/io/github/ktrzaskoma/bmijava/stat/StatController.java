@@ -1,10 +1,6 @@
 package io.github.ktrzaskoma.bmijava.stat;
 
-import io.github.ktrzaskoma.bmijava.stat.StatDto;
-import io.github.ktrzaskoma.bmijava.stat.StatWriteModel;
-import io.github.ktrzaskoma.bmijava.stat.Stat;
-import io.github.ktrzaskoma.bmijava.stat.StatCreateService;
-import io.github.ktrzaskoma.bmijava.stat.StatService;
+import io.github.ktrzaskoma.bmijava.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -36,10 +32,17 @@ public class StatController {
         return ResponseEntity.ok(statService.getSelectedStat(statsId));
     }
 
+
     @DeleteMapping("/{statsId}")
     ResponseEntity deleteStat(@PathVariable Long statsId) {
         return statService.deleteSelectedStat(statsId);
     }
 
+    @PostMapping ("{userId}/edit/{statsId}")
+    ResponseEntity<Stat> updateStat( @PathVariable Long userId,
+                                    @PathVariable Long statsId,
+                                    @RequestBody StatWriteModel statWriteModel) {
+        return ResponseEntity.ok().body(statCreateService.editStatistic(userId, statsId, statWriteModel));
+    }
 
 }

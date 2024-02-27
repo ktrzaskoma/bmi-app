@@ -1,7 +1,5 @@
 package io.github.ktrzaskoma.bmijava.stat;
 
-import io.github.ktrzaskoma.bmijava.stat.StatDto;
-import io.github.ktrzaskoma.bmijava.stat.Stat;
 import io.github.ktrzaskoma.bmijava.user.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
